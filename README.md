@@ -30,4 +30,4 @@ So if we want for this algorithm to perform faster we need to increase memory ba
 
 ## Experiments
 
-- [General Matrix-Matrix Multiplication](src/experiments/experiment_1/README.md)
+- [General Matrix Multiplication](src/experiments/experiment_1/README.md)
