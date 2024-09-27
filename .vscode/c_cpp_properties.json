@@ -4,7 +4,9 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",
-                "${workspaceFolder}/include"
+                "${workspaceFolder}/include",
+                "${workspaceFolder}/lib/googletest/googletest/include",
+                "${workspaceFolder}/lib/benchmark/include"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/clang",

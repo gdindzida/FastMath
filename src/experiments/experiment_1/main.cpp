@@ -1,3 +1,5 @@
+#include <benchmark/benchmark.h>
+
 #include <iostream>
 #include <vector>
 
@@ -7,40 +9,14 @@
 
 using Tensor = utils::Tensor<float>;
 
-int main() {
-  std::vector<int> nums{1, 2, 3, 4, 5};
+void my_experiment() {}
 
-  // Range-based for loop (C++20 feature)
-  for (auto num : nums) {
-    std::cout << num << ' ';
+static void BM_Function(benchmark::State& state) {
+  for (auto _ : state) {
+    my_experiment();
   }
-  std::cout << std::endl;
-
-  utils::print_lib_name();
-  algorithms::print_lib_name();
-
-  std::cout << "Tensor testing..." << std::endl;
-
-  Tensor t({10});
-
-  t.at({5}) = 5;
-
-  t.print();
-
-  Tensor t2(t);
-
-  t2.at({5}) = 6;
-
-  t.print();
-  t2.print();
-
-  Tensor t3(std::move(t));
-
-  t.print();
-  t2.print();
-  t3.print();
-
-  t3.at({1, 2});
-
-  return 0;
 }
+
+BENCHMARK(BM_Function);
+
+BENCHMARK_MAIN();

@@ -4,7 +4,7 @@
 
 ## Problem setup
 
-We have two matrices $A$ and $B$ which are $n \times n$ matrices. Then we perform matrix multiplication to get matrix $C$ and each element of matri x $C$ we calculate in following way:
+We have two matrices $A$ and $B$ which are $n \times n$ matrices. Then we perform matrix multiplication to get matrix $C$ and each element of matrix $C$ we calculate in following way:
 
 $$
 C_{ij} = \sum_{k=0}^{n}A_{ik}B_{kj} 

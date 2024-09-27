@@ -11,8 +11,14 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 # Set output directories for binaries and libraries
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(BENCHMARK_ENABLE_TESTING OFF)
+
+enable_testing()
 
 # Add subdirectories
+add_subdirectory(lib/benchmark)
+add_subdirectory(lib/googletest)
 add_subdirectory(src/algorithms)
 add_subdirectory(src/experiments/experiment_1)
 add_subdirectory(src/utils)
+add_subdirectory(tests/tensor_tests)

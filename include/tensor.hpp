@@ -5,8 +5,8 @@
 #include <cassert>
 #include <cstdint>
 #include <cstring>
-#include <iostream>
 #include <memory>
+#include <string>
 #include <vector>
 
 namespace utils {
@@ -35,7 +35,8 @@ class Tensor {
   ~Tensor() = default;
 
   T& at(const std::vector<uint32_t> coordinates) {
-    assert(coordinates.size() == _dim_sizes.size());
+    assert(coordinates.size() == _dim_sizes.size() &&
+           "Tensor dimensions and coordinates size do not match");
 
     uint32_t index = 0u;
     uint32_t prod = _mem_size;
@@ -49,11 +50,14 @@ class Tensor {
     return _data.get()[index];
   }
 
-  void print() {
+  std::string as_string() const {
+    std::string output = "";
     for (uint32_t index = 0u; index < _mem_size; ++index)
-      std::cout << _data.get()[index] << ",";
-    std::cout << std::endl;
+      output += std::to_string(_data.get()[index]) + ",";
+    return output;
   }
+
+  const std::vector<uint32_t>& get_dims() const { return _dim_sizes; }
 
  private:
   uint32_t _mem_size;
