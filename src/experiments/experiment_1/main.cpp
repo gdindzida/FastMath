@@ -4,19 +4,47 @@
 #include <vector>
 
 #include "gemm.hpp"
-#include "tensor.hpp"
-#include "utils.hpp"
+#include "matrix.hpp"
 
-using Tensor = utils::Tensor<float>;
+using Matrix = utils::Matrix<algorithms::fp>;
 
-void my_experiment() {}
+constexpr size_t n1 = 50ul;
+constexpr size_t n2 = 60ul;
+constexpr size_t n3 = 90ul;
 
-static void BM_Function(benchmark::State& state) {
+struct BM_Data {
+  BM_Data() : a(n1, n2), b(n2, n3), c(n1, n3) {
+    a.random_init(0, 5);
+    b.random_init(0, 5);
+  }
+
+  Matrix a;
+  Matrix b;
+  Matrix c;
+};
+
+static void BM_Naive(benchmark::State& state) {
+  // Setup
+  BM_Data data{};
+
+  // Benchmark
   for (auto _ : state) {
-    my_experiment();
+    algorithms::gemm_naive(data.a, data.b, data.c);
   }
 }
 
-BENCHMARK(BM_Function);
+static void BM_Transpose(benchmark::State& state) {
+  // Setup
+  BM_Data data{};
+
+  // Benchmark
+  for (auto _ : state) {
+    algorithms::gemm_transpose(data.a, data.b, data.c);
+  }
+}
+
+BENCHMARK(BM_Naive);
+
+BENCHMARK(BM_Transpose);
 
 BENCHMARK_MAIN();

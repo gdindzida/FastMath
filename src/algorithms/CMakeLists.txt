@@ -1,4 +1,4 @@
-add_library(alg_lib gemm_naive.cpp)
+add_library(alg_lib gemm.cpp)
 
 target_include_directories(alg_lib 
 PUBLIC "${PROJECT_SOURCE_DIR}/include"
