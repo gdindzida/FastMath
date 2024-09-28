@@ -20,6 +20,9 @@ void gemm_naive(const utils::Matrix<fp>& a, const utils::Matrix<fp>& b,
                 utils::Matrix<fp>& c) {
   assert_matrix_dimensions(a, b, c);
 
+#ifdef _OPENMP
+#pragma omp parallel for
+#endif
   for (size_t i = 0; i < a.get_row_size(); ++i) {
     for (size_t j = 0; j < b.get_col_size(); ++j) {
       c.at(i, j) = static_cast<algorithms::fp>(0);
@@ -38,6 +41,9 @@ void gemm_transpose(const utils::Matrix<fp>& a, const utils::Matrix<fp>& b,
   static utils::Matrix<fp> b_copy(b.get_col_size(), b.get_row_size());
   b.transpose_to(b_copy);
 
+#ifdef _OPENMP
+#pragma omp parallel for
+#endif
   for (size_t i = 0; i < a.get_row_size(); ++i) {
     for (size_t j = 0; j < b.get_col_size(); ++j) {
       c.at(i, j) = static_cast<algorithms::fp>(0);

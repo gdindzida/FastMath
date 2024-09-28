@@ -61,6 +61,9 @@ class Matrix {
     size_t row_size_temp = _row_size;
     size_t col_size_temp = _col_size;
     std::swap(_row_size, _col_size);
+#ifdef _OPENMP
+#pragma omp parallel for
+#endif
     for (size_t j = 0; j < col_size_temp; ++j) {
       for (size_t i = 0; i < row_size_temp; ++i) {
         this->at(j, i) = temp.at(i, j);
@@ -69,6 +72,9 @@ class Matrix {
   }
 
   void transpose_to(Matrix& dest) const {
+#ifdef _OPENMP
+#pragma omp parallel for
+#endif
     for (size_t j = 0; j < _col_size; ++j) {
       for (size_t i = 0; i < _row_size; ++i) {
         dest.at(j, i) = this->at(i, j);

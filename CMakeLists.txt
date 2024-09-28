@@ -15,6 +15,8 @@ set(BENCHMARK_ENABLE_TESTING OFF)
 
 enable_testing()
 
+find_package(OpenMP REQUIRED)
+
 # Add subdirectories
 add_subdirectory(lib/benchmark)
 add_subdirectory(lib/googletest)
