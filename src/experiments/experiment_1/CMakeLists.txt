@@ -1,6 +1,6 @@
 add_executable(experiment_1 main.cpp)
 
-target_link_libraries(experiment_1 PRIVATE alg_lib benchmark::benchmark)
+target_link_libraries(experiment_1 PRIVATE alg_lib benchmark::benchmark ${BLAS_LIBRARIES})
 
 if(OpenMP_CXX_FOUND)
     target_link_libraries(experiment_1 PUBLIC OpenMP::OpenMP_CXX)

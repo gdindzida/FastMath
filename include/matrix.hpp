@@ -48,8 +48,15 @@ class Matrix {
 
   std::string as_string() const {
     std::string output = "";
-    for (size_t index = 0u; index < _mem_size; ++index)
+    size_t counter = 0;
+    for (size_t index = 0u; index < _mem_size; ++index) {
       output += std::to_string(_data.get()[index]) + ",";
+      ++counter;
+      if (counter >= _col_size) {
+        counter = 0;
+        output += "\n";
+      }
+    }
     return output;
   }
 
@@ -87,9 +94,21 @@ class Matrix {
     std::mt19937 gen(rd());
     std::uniform_int_distribution<> dis(min, max);
 
+#ifdef _OPENMP
+#pragma omp parallel for
+#endif
     for (size_t i = 0; i < _mem_size; ++i) {
       int32_t random_number = dis(gen);
       _data.get()[i] = static_cast<T>(random_number);
+    }
+  }
+
+  void zero_init() {
+#ifdef _OPENMP
+#pragma omp parallel for
+#endif
+    for (size_t i = 0; i < _mem_size; ++i) {
+      _data.get()[i] = static_cast<T>(0);
     }
   }
 

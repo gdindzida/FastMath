@@ -16,6 +16,7 @@ set(BENCHMARK_ENABLE_TESTING OFF)
 enable_testing()
 
 find_package(OpenMP REQUIRED)
+find_package(BLAS REQUIRED)
 
 # Add subdirectories
 add_subdirectory(lib/benchmark)

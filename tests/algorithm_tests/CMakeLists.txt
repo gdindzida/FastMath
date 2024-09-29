@@ -1,6 +1,6 @@
 add_executable(gemm_tests gemm_tests.cpp)
 
-target_link_libraries(gemm_tests PRIVATE gtest gtest_main alg_lib)
+target_link_libraries(gemm_tests PRIVATE gtest gtest_main alg_lib ${BLAS_LIBRARIES})
 
 target_include_directories(gemm_tests 
 PUBLIC "${PROJECT_SOURCE_DIR}/include"
