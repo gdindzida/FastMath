@@ -30,10 +30,10 @@ With OpenMP:
 
 ## Optimization #2 and #3
 
-Optimization #2 includes calculating matrix multiplication by blocks. This way we optimize caching since in case of rows/columns being too big (in our example 1024) they can't fit in cache. So If we choose blocks wher rows and columns can fit we can optimize or caching. 
+Optimization #2 includes calculating matrix multiplication by blocks. This way we optimize caching since in case of rows/columns being too big (in our example 1024) they can't fit in cache. So If we choose blocks where rows and columns can fit we can optimize our caching. 
 
 Optimization #3 includes dedicating local memory for each OpenMP thread which is size of 3 blocks needed to multiply our blocks. Also if we use macro to define block size we get potentionally additional optimization by complier.
 
-And finally BLAS implementation of gemm algorithm is shown for comparison which shows us that "we should not invent hot water" as they say in Balkan countries.
+And finally BLAS implementation of gemm algorithm is shown for comparison which shows us that "we should not try to invent hot water" as they say in Balkan countries.
 
 ![alt text](image-2.png)
